@@ -118,10 +118,12 @@ export function parseDate(str, formatHint = 'auto') {
     } else if (formatHint === 'dmy') {
       day = A; month = B;
     } else {
-      // auto: if first part > 12 it must be the day
+      // auto: if first part > 12 it must be the day; otherwise default to
+      // DD/MM (common in UK/EU exports). For US (MM/DD) exports, set
+      // formatHint='mdy' in the column mapping dialog.
       if (A > 12) { day = A; month = B; }
       else if (B > 12) { day = B; month = A; }
-      else { day = A; month = B; } // default: DD/MM (common UK format)
+      else { day = A; month = B; } // default: DD/MM
     }
     const dt = new Date(year, month - 1, day);
     return isValidDate(dt)

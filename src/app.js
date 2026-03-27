@@ -141,6 +141,7 @@ function renderUploadScreen() {
               <li>Quoted fields, commas in values handled automatically</li>
               <li>Common column names auto-detected (Date, Amount, Description, Category…)</li>
               <li>Column mapping is configurable if auto-detection fails</li>
+              <li>Ambiguous dates (e.g. 03/03/2026) default to DD/MM/YYYY — change in the mapping dialog if your file uses MM/DD/YYYY</li>
             </ul>
           </div>
         </div>
