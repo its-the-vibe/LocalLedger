@@ -1,0 +1,11 @@
+services:
+  app:
+    build: .
+    ports:
+      - "${PORT:-8080}:8080"
+    volumes:
+      - ./dist:/dist:ro
+    environment:
+      - LISTEN_ADDR=:8080
+    read_only: true
+    restart: on-failure:10

@@ -6,4 +6,7 @@ export default defineConfig({
     assetsDir: 'assets',
   },
   publicDir: 'public',
+  server: {
+    host: '0.0.0.0'
+  }
 });
