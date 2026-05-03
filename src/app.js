@@ -221,7 +221,6 @@ function showMappingDialog(headers, mapping) {
   overlay.setAttribute('aria-modal', 'true');
   overlay.setAttribute('aria-labelledby', 'mapping-title');
 
-  const headerOptions = headers.map((h) => `<option value="${escapeHtml(h)}">${escapeHtml(h)}</option>`).join('');
   const selectFor = (field, label, required = false) => {
     const current = mapping[field] || '';
     return /* html */ `
