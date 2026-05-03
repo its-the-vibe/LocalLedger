@@ -1,5 +1,7 @@
 # LocalLedger
 
+[![CI](https://github.com/its-the-vibe/LocalLedger/actions/workflows/ci.yaml/badge.svg)](https://github.com/its-the-vibe/LocalLedger/actions/workflows/ci.yaml)
+
 **A privacy-first, client-side PWA for importing CSV bank transactions and visualising personal spending.**
 
 > ⚠️ Your transaction data **never** leaves your browser. No backend. No analytics. No cloud sync.
@@ -23,6 +25,18 @@
 ---
 
 ## How to run
+
+### Makefile targets
+
+A `Makefile` is provided for common development tasks:
+
+| Target         | Description                                      |
+|----------------|--------------------------------------------------|
+| `make install` | Install Node.js dependencies (`npm install`)     |
+| `make build`   | Build the project for production (outputs to `dist/`) |
+| `make test`    | Run unit tests with Vitest                       |
+| `make lint`    | Run ESLint on the `src/` directory               |
+| `make all`     | Run lint, test, and build in sequence            |
 
 ### Development
 
