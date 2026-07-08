@@ -1,3 +1,3 @@
 module github.com/its-the-vibe/LocalLedger
 
-go 1.26.4
+go 1.26.5
