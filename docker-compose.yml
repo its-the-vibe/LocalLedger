@@ -1,6 +1,8 @@
 services:
   app:
     build: .
+    image: ghcr.io/its-the-vibe/localledger:latest
+    pull_policy: always
     ports:
       - "${PORT:-8080}:8080"
     volumes:
