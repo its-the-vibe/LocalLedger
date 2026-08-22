@@ -1,5 +1,8 @@
 # Build stage
-FROM golang:1.27.0-alpine AS builder
+FROM --platform=$BUILDPLATFORM golang:1.27.0-alpine AS builder
+
+ARG TARGETOS
+ARG TARGETARCH
 
 WORKDIR /build
 
@@ -7,14 +10,16 @@ COPY go.mod ./
 RUN go mod download
 
 COPY server.go ./
-RUN CGO_ENABLED=0 GOOS=linux go build -trimpath -ldflags="-s -w" -o localledger .
+RUN CGO_ENABLED=0 GOOS=${TARGETOS} GOARCH=${TARGETARCH} go build -trimpath -ldflags="-s -w" -o localledger .
 
-# Runtime stage — minimal scratch image
-FROM scratch
+# Runtime stage (distroless)
+FROM gcr.io/distroless/static-debian13:nonroot
 
 COPY --from=builder /build/localledger /localledger
 # COPY static/ /static/
 
 EXPOSE 8080
+
+USER nonroot:nonroot
 
 ENTRYPOINT ["/localledger"]
