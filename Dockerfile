@@ -15,11 +15,13 @@ RUN CGO_ENABLED=0 GOOS=${TARGETOS} GOARCH=${TARGETARCH} go build -trimpath -ldfl
 # Runtime stage (distroless)
 FROM gcr.io/distroless/static-debian13:nonroot
 
-COPY --from=builder /build/localledger /localledger
+WORKDIR /app
+
+COPY --from=builder /build/localledger /app/localledger
 # COPY static/ /static/
 
 EXPOSE 8080
 
 USER nonroot:nonroot
 
-ENTRYPOINT ["/localledger"]
+ENTRYPOINT ["/app/localledger"]
