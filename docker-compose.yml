@@ -1,11 +1,13 @@
 services:
-  app:
-    build: .
+  localledger:
+    image: ghcr.io/its-the-vibe/vibeserver:latest
+    pull_policy: always
     ports:
       - "${PORT:-8080}:8080"
     volumes:
       - ./dist:/app/dist:ro
     environment:
       - LISTEN_ADDR=:8080
+      - DIST_DIR=/app/dist
     read_only: true
     restart: on-failure:10
